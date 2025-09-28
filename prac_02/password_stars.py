@@ -1,4 +1,5 @@
 
+min_length=5
 
 def main():
     """This function runs the other functions"""
@@ -9,7 +10,6 @@ def main():
 def get_password() -> str:
     """This function checks if the inputted password is valid"""
     password = input("Please enter password: ")
-    min_length=5
 
     while len(password) < min_length:
         print("Please input a password longer than 5 characters")
