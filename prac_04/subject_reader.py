@@ -32,6 +32,7 @@ def load_subjects(filename=FILENAME):
     input_file.close()
 
 def display_data(subjects):
+    """Print data for each line"""
     for line in subjects:
         print(f"{line[0]} is taught by {line[1]} and has {line[2]} number of students")
 
