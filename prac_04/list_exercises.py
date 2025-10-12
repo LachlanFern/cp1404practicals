@@ -1,8 +1,13 @@
 
+usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface', 'BaseStdIn', 'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer', 'bob']
+
 def main():
     numbers = number_info()
     calculated = calculate_numbers(numbers)
     display_numbers(calculated)
+
+    user_input = ask_username()
+    check_username(user_input)
 
 def number_info():
     """Get 5 numbers from the user"""
@@ -30,5 +35,16 @@ def display_numbers(calculated):
     print(f"The smallest number is {small_num}")
     print(f"The largest number is {big_num}")
     print(f"The average of the numbers is {avg_num}")
+
+def ask_username():
+    """Get username from the user"""
+    user_input = input("please enter username: ")
+    return user_input
+def check_username(user_input):
+    """Check if username is on the list"""
+    if user_input in usernames:
+        print("Access Granted")
+    else:
+        print("Access Denied")
 
 main()
