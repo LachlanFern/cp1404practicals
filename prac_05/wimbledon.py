@@ -1,7 +1,7 @@
 """
 Wimbledon
-Estimate: 50mins
-Actual:
+Estimate: 50 mins
+Actual:32 mins
 """
 filename = "wimbledon.csv"
 def main():
