@@ -10,4 +10,6 @@ programming_languages = [ProgrammingLanguage("Python", "Dynamic", True, 1991),
                          ProgrammingLanguage("Visual Basic", "Static", False, 1991)]
 
 dynamic_languages = [language for language in programming_languages if language.is_dynamic()]
-print(f"The dynamically typed languages are {dynamic_languages}")
+print(f"The dynamically typed languages are")
+for i in range(len(dynamic_languages)):
+    print(f"{dynamic_languages[i]}")
