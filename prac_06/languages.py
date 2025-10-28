@@ -5,3 +5,9 @@ ruby = ProgrammingLanguage("Ruby", "Dynamic", True, 1995)
 visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991)
 print(python)
 
+programming_languages = [ProgrammingLanguage("Python", "Dynamic", True, 1991),
+                         ProgrammingLanguage("Ruby", "Dynamic", True, 1995),
+                         ProgrammingLanguage("Visual Basic", "Static", False, 1991)]
+
+dynamic_languages = [language for language in programming_languages if language.is_dynamic()]
+print(f"The dynamically typed languages are {dynamic_languages}")
