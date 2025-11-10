@@ -24,10 +24,18 @@ def main():
     while choice != "Q":
         if choice == "L":
             load_projects()
-        elif choice == "D":
-            display_projects(projects)
         elif choice == "S":
             save_projects(projects)
+        elif choice == "D":
+            display_projects(projects)
+        elif choice == "F":
+            break
+            filter_projects(projects)
+        elif choice == "A":
+            break
+            add_projects(projects)
+        elif choice == "U":
+            update_projects(projects)
         else:
             print("Invalid choice")
         print(menu)
@@ -64,5 +72,18 @@ def display_projects(projects):
     print("Completed projects:")
     for project in complete:
         print(project)
+
+def update_projects(projects):
+    for i, project in enumerate(projects):
+        print(f"{i}: {project}")
+
+    choice = int(input("Project choice: "))
+    update_project = projects[choice]
+    new_priority = input("New priority level: ")
+    new_completion = input("New completion level:  ")
+
+    update_project.update(new_priority, new_completion)
+
+
 
 main()

@@ -19,3 +19,11 @@ class Project:
     def __lt__(self, other):
         return self.priority < other.priority
 
+    def update(self, new_priority, new_completion):
+        if new_priority != "":
+            self.priority = int(new_priority)
+        if new_completion != "":
+            self.completion = int(new_completion)
+
+
+
