@@ -1,7 +1,7 @@
 """
 Project management program
 Estimate: 120 mins
-Actual:
+Actual:115 mins
 """
 
 from project import Project
@@ -24,7 +24,7 @@ def main():
 
     while choice != "Q":
         if choice == "L":
-            load_projects()
+            projects = load_projects()
         elif choice == "S":
             save_projects(projects)
         elif choice == "D":
@@ -49,6 +49,7 @@ def main():
 
 
 def load_projects():
+    """Loads project from file and creates list"""
     projects = []
     in_file = open(filename, 'r')
     in_file.readline()
@@ -63,12 +64,17 @@ def load_projects():
     return projects
 
 def save_projects(projects):
+    """Save projects to file"""
     with open(filename, "w") as out_file:
+        print("Name\tStart Date\tPriority\tCost\tEstimate\tCompletion Percentage", file=out_file)
         for project in projects:
-            print(f"{project.name}, {project.start_date}, {project.priority}, {project.cost}, {project.completion}", file=out_file)
+            start_date_string = project.start_date.strftime("%d/%m/%Y")
+            print(f"{project.name}\t{start_date_string}\t{project.priority}\t{project.cost}\t{project.completion}", file=out_file)
     print(f"{len(projects)} projects saved")
 
 def display_projects(projects):
+    """Display incomplete and complete projects sorted by priority"""
+    projects.sort()
     incomplete = [project for project in projects if not project.is_complete()]
     complete = [project for project in projects if project.is_complete()]
 
@@ -81,6 +87,7 @@ def display_projects(projects):
         print(project)
 
 def update_projects(projects):
+    """Updates priority level and completion level"""
     for i, project in enumerate(projects):
         print(f"{i}: {project}")
 
@@ -92,6 +99,7 @@ def update_projects(projects):
     update_project.update(new_priority, new_completion)
 
 def add_projects(projects):
+    """Add a new project to the list"""
     print("Let's add a new project")
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yyyy): ")
@@ -99,6 +107,7 @@ def add_projects(projects):
         filter_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
     except ValueError:
         print("Incorrect format please retry")
+        return
     priority = int(input("priority: "))
     cost = float(input("Cost estimate: $"))
     completion = int(input("Percent complete: "))
@@ -106,6 +115,7 @@ def add_projects(projects):
     print("Project added!")
 
 def filter_projects(projects):
+    """Display projects from after given date"""
     date = input("Show projects that start after date (dd/mm/yyyy): ")
     try:
         filter_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
