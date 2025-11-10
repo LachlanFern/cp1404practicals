@@ -39,7 +39,13 @@ def main():
             print("Invalid choice")
         print(menu)
         choice = input(">>> ").upper()
-    print("goodbye")
+    final_choice = input(f"Would you like to save to {filename}? Y/N" ).upper()
+    if final_choice == "Y":
+        save_projects(projects)
+    elif final_choice == "N":
+        print("Thank you for using this project management software.")
+    else:
+        print("Please confirm your choice with 'Y' or 'N'")
 
 
 def load_projects():
@@ -97,7 +103,7 @@ def add_projects(projects):
     cost = float(input("Cost estimate: $"))
     completion = int(input("Percent complete: "))
     projects.append(Project(name, filter_date, priority, cost, completion))
-    print("Project saved!")
+    print("Project added!")
 
 def filter_projects(projects):
     date = input("Show projects that start after date (dd/mm/yyyy): ")
