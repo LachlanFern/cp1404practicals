@@ -5,6 +5,7 @@ Actual:
 """
 
 from project import Project
+import datetime
 filename = "projects.txt"
 
 def main():
@@ -29,10 +30,8 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            break
             filter_projects(projects)
         elif choice == "A":
-            break
             add_projects(projects)
         elif choice == "U":
             update_projects(projects)
@@ -50,7 +49,9 @@ def load_projects():
 
     for line in in_file:
         parts = line.strip().split('\t')
-        project = Project(parts[0], parts[1], int(parts[2]), float(parts[3]), int(parts[4]))
+        start_date_string = parts[1]
+        start_date = datetime.datetime.strptime(start_date_string, "%d/%m/%Y").date()
+        project = Project(parts[0], start_date, int(parts[2]), float(parts[3]), int(parts[4]))
         projects.append(project)
     in_file.close()
     return projects
@@ -84,6 +85,34 @@ def update_projects(projects):
 
     update_project.update(new_priority, new_completion)
 
+def add_projects(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yyyy): ")
+    try:
+        filter_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
+    except ValueError:
+        print("Incorrect format please retry")
+    priority = int(input("priority: "))
+    cost = float(input("Cost estimate: $"))
+    completion = int(input("Percent complete: "))
+    projects.append(Project(name, filter_date, priority, cost, completion))
+    print("Project saved!")
+
+def filter_projects(projects):
+    date = input("Show projects that start after date (dd/mm/yyyy): ")
+    try:
+        filter_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+    except ValueError:
+        print("Incorrect format please retry")
+        return
+    filtered = [project for project in projects if project.start_date > filter_date]
+
+    if filtered:
+        for project in filtered:
+            print(project)
+    else:
+        print("No projects after that date")
 
 
 main()
