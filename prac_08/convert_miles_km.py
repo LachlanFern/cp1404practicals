@@ -15,18 +15,18 @@ class MilesConverterApp(App):
         return self.root
 
     def handle_convert(self):
-
+        """handles conversion of miles into kilometres"""
         result = self.get_miles() * MILES_TO_KM
         self.root.ids.output_label.text = str(result)
 
     def handle_increment(self, change ):
-
+        """handles up and down button to change mile increment by 1"""
         result = self.get_miles() + change
         self.root.ids.mile_input.text = str(result)
         self.handle_convert()
 
     def get_miles(self):
-
+        """extracts a float value of miles from text and validates being a number"""
         try:
             value = float(self.root.ids.mile_input.text)
             return value
