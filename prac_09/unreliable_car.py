@@ -3,7 +3,6 @@ CP1404 Practical
 Unreliable Car
 """
 import random
-
 from prac_09.car import Car
 
 
