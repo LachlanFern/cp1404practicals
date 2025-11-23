@@ -8,5 +8,3 @@ my_taxi.start_fare()
 my_taxi.add_fuel(40)
 my_taxi.drive(100)
 print(my_taxi)
-
-
